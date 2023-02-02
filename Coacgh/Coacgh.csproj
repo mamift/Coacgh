@@ -7,13 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="NSwag.MSBuild" Version="13.18.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
   <Target Name="NSwag" BeforeTargets="BeforeBuild;BeforeRebuild" Condition="'$(GenerateCode)'=='True'">
-    <Exec Command="$(NSwagExe_Net60) run api.github.com.json /variables:Configuration=$(Configuration)" />
+    <Exec Command="$(NSwagExe_Net60) run nswag.json /variables:Configuration=$(Configuration)" />
   </Target>
 </Project>
