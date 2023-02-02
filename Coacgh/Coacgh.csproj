@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <GenerateCode>True</GenerateCode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSwag.MSBuild" Version="13.18.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="NSwag" BeforeTargets="BeforeBuild;BeforeRebuild" Condition="'$(GenerateCode)'=='True'">
+    <Exec Command="$(NSwagExe_Net60) run api.github.com.json /variables:Configuration=$(Configuration)" />
+  </Target>
+</Project>
